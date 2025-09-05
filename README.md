@@ -67,3 +67,5 @@ export default tseslint.config([
   },
 ])
 ```
+
+Deplyment: using github pages.
