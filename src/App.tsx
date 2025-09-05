@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef, FC } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import type { FC } from 'react';
 
-import portfolioData from './data.js';
+import portfolioData from './data';
 
 // Define types for all data structures and components
 interface HeroData {
@@ -67,142 +68,142 @@ const MoonIcon: FC = () => (
 
 const ChevronLeft: FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-left">
-        <path d="m15 18-6-6 6-6"/>
+        <path d="m15 18-6-6 6-6" />
     </svg>
 );
 
 const ChevronRight: FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-right">
-        <path d="m9 18 6-6-6-6"/>
+        <path d="m9 18 6-6-6-6" />
     </svg>
 );
 
 const CloseIcon: FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x">
-        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+        <path d="M18 6 6 18" /><path d="m6 6 12 12" />
     </svg>
 );
 
 const ArrowUp: FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up">
-        <path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>
+        <path d="m5 12 7-7 7 7" /><path d="M12 19V5" />
     </svg>
 );
 
 // New icons for Skills, Contact, and Footer
 const ServerIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-server">
-    <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
-    <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
-    <line x1="6" y1="6" x2="6.01" y2="6"/>
-    <line x1="6" y1="18" x2="6.01" y2="18"/>
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-server">
+        <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+        <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+        <line x1="6" y1="6" x2="6.01" y2="6" />
+        <line x1="6" y1="18" x2="6.01" y2="18" />
+    </svg>
 );
 
 const CloudIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-cloud">
-    <path d="M17.5 19H17a5 5 0 0 0 0-9h-.5a.5.5 0 0 1-.5-.5V9a7 7 0 1 0-13.29 4.3" />
-    <path d="M22 12a3.5 3.5 0 0 0-4-1.5" />
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-cloud">
+        <path d="M17.5 19H17a5 5 0 0 0 0-9h-.5a.5.5 0 0 1-.5-.5V9a7 7 0 1 0-13.29 4.3" />
+        <path d="M22 12a3.5 3.5 0 0 0-4-1.5" />
+    </svg>
 );
 
 const DatabaseIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-database">
-    <ellipse cx="12" cy="5" rx="9" ry="3"/>
-    <path d="M3 5V19A9 9 0 0 0 21 19V5"/>
-    <path d="M3 12A9 9 0 0 0 21 12"/>
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-database">
+        <ellipse cx="12" cy="5" rx="9" ry="3" />
+        <path d="M3 5V19A9 9 0 0 0 21 19V5" />
+        <path d="M3 12A9 9 0 0 0 21 12" />
+    </svg>
 );
 
 const Code2Icon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-code-2">
-    <path d="m18 16 4-4-4-4"/>
-    <path d="m6 8-4 4 4 4"/>
-    <path d="m14.5 4-5 16"/>
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-code-2">
+        <path d="m18 16 4-4-4-4" />
+        <path d="m6 8-4 4 4 4" />
+        <path d="m14.5 4-5 16" />
+    </svg>
 );
 
 const BrainIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-brain">
-    <path d="M9.4 10.6a2 2 0 1 0 2.8-2.8"/>
-    <path d="M5.8 11.2a2 2 0 1 0 2.8 2.8"/>
-    <path d="M16.6 12.8a2 2 0 1 0-2.8-2.8"/>
-    <path d="M18.2 9.2a2 2 0 1 0-2.8-2.8"/>
-    <path d="M10.6 16.6a2 2 0 1 0 2.8 2.8"/>
-    <path d="M7.2 19.8a2 2 0 1 0 2.8-2.8"/>
-    <path d="M19.8 7.2a2 2 0 1 0-2.8 2.8"/>
-    <path d="M12 2v20a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
-    <path d="M4 14.5A8.5 8.5 0 0 1 12 6V2"/>
-    <path d="M20 14.5A8.5 8.5 0 0 0 12 6V2"/>
-    <path d="M10 21.8C4.5 21.2 2 15.6 2 12c0-2.4 1-5.6 3.5-7"/>
-    <path d="M14 21.8c5.5-.6 8-6.2 8-9.8 0-2.4-1-5.6-3.5-7"/>
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-brain">
+        <path d="M9.4 10.6a2 2 0 1 0 2.8-2.8" />
+        <path d="M5.8 11.2a2 2 0 1 0 2.8 2.8" />
+        <path d="M16.6 12.8a2 2 0 1 0-2.8-2.8" />
+        <path d="M18.2 9.2a2 2 0 1 0-2.8-2.8" />
+        <path d="M10.6 16.6a2 2 0 1 0 2.8 2.8" />
+        <path d="M7.2 19.8a2 2 0 1 0 2.8-2.8" />
+        <path d="M19.8 7.2a2 2 0 1 0-2.8 2.8" />
+        <path d="M12 2v20a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z" />
+        <path d="M4 14.5A8.5 8.5 0 0 1 12 6V2" />
+        <path d="M20 14.5A8.5 8.5 0 0 0 12 6V2" />
+        <path d="M10 21.8C4.5 21.2 2 15.6 2 12c0-2.4 1-5.6 3.5-7" />
+        <path d="M14 21.8c5.5-.6 8-6.2 8-9.8 0-2.4-1-5.6-3.5-7" />
+    </svg>
 );
 
 const UserIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user">
-    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
-    <circle cx="12" cy="7" r="4"/>
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-user">
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+    </svg>
 );
 
 const MailIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
-    <rect width="20" height="16" x="2" y="4" rx="2"/>
-    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
 );
 
 const MessageCircleIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle">
-    <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle">
+        <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+    </svg>
 );
 
 const GithubIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-github">
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.23c2.9.3 6-1.4 6-6.3a4.9 4.9 0 0 0-1.4-3.4c.4-.9.4-2.1 0-3.1s-1.8-1-2.8-1a7.7 7.7 0 0 0-1.2.1A6.8 6.8 0 0 0 12 2c-3.7 0-6.8 2-6.8 6a4.9 4.9 0 0 0-1.4 3.4c0 4.9 3.1 6.6 6 6.3a4.8 4.8 0 0 0-1 3.23v4" />
-    <path d="M9 18c-2.4 0-4.4-1.2-4.4-3" />
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-github">
+        <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.23c2.9.3 6-1.4 6-6.3a4.9 4.9 0 0 0-1.4-3.4c.4-.9.4-2.1 0-3.1s-1.8-1-2.8-1a7.7 7.7 0 0 0-1.2.1A6.8 6.8 0 0 0 12 2c-3.7 0-6.8 2-6.8 6a4.9 4.9 0 0 0-1.4 3.4c0 4.9 3.1 6.6 6 6.3a4.8 4.8 0 0 0-1 3.23v4" />
+        <path d="M9 18c-2.4 0-4.4-1.2-4.4-3" />
+    </svg>
 );
 
 const LinkedinIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect x="2" y="9" width="4" height="12"/>
-    <circle cx="4" cy="4" r="2"/>
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-linkedin">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2a2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+        <rect x="2" y="9" width="4" height="12" />
+        <circle cx="4" cy="4" r="2" />
+    </svg>
 );
 
 // New icons for the Stats section
 const GlobeIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-globe">
-    <circle cx="12" cy="12" r="10" />
-    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-    <path d="M2 12h20" />
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-globe">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+        <path d="M2 12h20" />
+    </svg>
 );
 
 const BriefcaseIcon: FC = () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-briefcase">
-        <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+        <rect width="20" height="14" x="2" y="7" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
     </svg>
 );
 
 const UsersIcon: FC = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-users">
-    <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
-    <path d="M22 21v-2a4 4 0 0 0-3-3.87M6 15.13A4 4 0 0 0 3 19v2" />
-  </svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-users">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87M6 15.13A4 4 0 0 0 3 19v2" />
+    </svg>
 );
 
-const skillsIcons: { [key: string]: JSX.Element } = {
-  "Backend Development": <ServerIcon />,
-  "Cloud & DevOps": <CloudIcon />,
-  "Databases & Caching": <DatabaseIcon />,
-  "Frontend": <Code2Icon />,
-  "AI/ML": <BrainIcon />
+const skillsIcons: { [key: string]: React.ReactNode  } = {
+    "Backend Development": <ServerIcon />,
+    "Cloud & DevOps": <CloudIcon />,
+    "Databases & Caching": <DatabaseIcon />,
+    "Frontend": <Code2Icon />,
+    "AI/ML": <BrainIcon />
 };
 
 // Reusable Project Card component
@@ -212,7 +213,7 @@ const ProjectCard: FC<{ project: Project; onClick: (project: Project) => void }>
         className="group relative p-6 rounded-3xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-md shadow-lg border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:scale-[1.03] hover:border-fuchsia-500 hover:shadow-2xl cursor-pointer"
     >
         <div className="relative overflow-hidden rounded-2xl mb-4">
-            <img src={project.image} alt={project.title} className="w-full h-48 object-cover transform-gpu transition-transform duration-500 group-hover:scale-110"/>
+            <img src={project.image} alt={project.title} className="w-full h-48 object-cover transform-gpu transition-transform duration-500 group-hover:scale-110" />
         </div>
         <h3 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-50 font-montserrat">{project.title}</h3>
         <p className="text-slate-600 dark:text-slate-400 text-sm font-inter">{project.description}</p>
@@ -232,8 +233,8 @@ const ProjectModal: FC<{ project: Project | null; onClose: () => void }> = ({ pr
                 <button onClick={onClose} className="absolute top-4 right-4 p-2 rounded-full text-gray-400 hover:text-gray-500 dark:text-gray-600 dark:hover:text-gray-400 transition-colors duration-200">
                     <CloseIcon />
                 </button>
-                <img src={project.image} alt={project.title} className="w-full h-auto rounded-2xl mb-6 shadow-md object-cover"/>
-                <h2 className="text-4xl font-bold mb-4 text-slate-900 dark:text-slate-50 font-montserrat">{project.title}</h2>
+                <img src={project.image} alt={project.title} className="w-full h-auto rounded-2xl mb-6 shadow-md object-cover" />
+                <h2 className="text-4xl font-bold mb-4 text-fuchsia-600 dark:text-fuchsia-400 font-montserrat">{project.title}</h2>
                 <p className="text-slate-600 dark:text-slate-400 mb-6 font-inter">{project.description}</p>
                 <div className="space-y-6">
                     <div>
@@ -326,7 +327,7 @@ const HeroSection: FC<{ heroData: HeroData }> = ({ heroData }) => {
 };
 
 // New StatCounter component for animated numbers
-const StatCounter: FC<{ stat: Stat; icon: JSX.Element; }> = ({ stat, icon }) => {
+const StatCounter: FC<{ stat: Stat; icon: React.ReactNode; }> = ({ stat, icon }) => {
     const [count, setCount] = useState<number>(0);
     const ref = useRef<HTMLDivElement>(null);
 
@@ -378,7 +379,7 @@ const StatCounter: FC<{ stat: Stat; icon: JSX.Element; }> = ({ stat, icon }) => 
 
 // New Stats Section
 const StatsSection: FC<{ stats: Stat[] }> = ({ stats }) => {
-    const icons: JSX.Element[] = [<GlobeIcon />, <BriefcaseIcon />, <UsersIcon />];
+    const icons: React.ReactNode[] = [<GlobeIcon />, <BriefcaseIcon />, <UsersIcon />];
     return (
         <section id="stats" className="py-16 animate-fade-in" data-section>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -395,7 +396,7 @@ const SkillsSection: FC<{ skillsData: SkillsData }> = ({ skillsData }) => (
         <h2 className="text-4xl font-bold text-center mb-10 font-montserrat">Skills</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Object.entries(skillsData).map(([category, { list }], index) => (
-                <div key={category} className="flex items-start p-6 rounded-3xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-md shadow-lg border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:scale-105 hover:border-fuchsia-500 hover:shadow-2xl">
+                <div key={index} className="flex items-start p-6 rounded-3xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-md shadow-lg border border-slate-200 dark:border-slate-700 transition-all duration-300 hover:scale-105 hover:border-fuchsia-500 hover:shadow-2xl">
                     <div className="p-2 mr-4 rounded-full bg-fuchsia-500 text-white flex-shrink-0">
                         {skillsIcons[category]}
                     </div>
@@ -420,7 +421,7 @@ const ProjectsSection: FC<{ projects: Project[]; onProjectClick: (project: Proje
         <h2 className="text-4xl font-bold text-center mb-10 font-montserrat">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} onClick={onProjectClick} />
+                <ProjectCard key={index} project={project} onClick={onProjectClick} />
             ))}
         </div>
     </section>
@@ -478,33 +479,61 @@ const TestimonialsCarousel: FC<{ testimonials: Testimonial[] }> = React.memo(({ 
 
     const prevSlide = () => {
         resetTimeout();
-        setCurrent(prevCurrent => (prevCurrent === 0 ? testimonials.length - 1 : prevCurrent - 1));
+        setCurrent(prevCurrent =>
+            prevCurrent === 0 ? testimonials.length - 1 : prevCurrent - 1
+        );
     };
 
     const nextSlide = () => {
         resetTimeout();
-        setCurrent(prevCurrent => (prevCurrent === testimonials.length - 1 ? 0 : prevCurrent + 1));
+        setCurrent(prevCurrent =>
+            prevCurrent === testimonials.length - 1 ? 0 : prevCurrent + 1
+        );
     };
+
 
     return (
         <section id="testimonials" className="py-16 animate-fade-in" data-section>
             <h2 className="text-4xl font-bold text-center mb-10 font-montserrat">Testimonials</h2>
-            <div className="relative max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-md border border-slate-200 dark:border-slate-700 min-h-[170px] flex items-center">
-                <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${current * 100}%)` }}>
+            <div className="relative max-w-2xl mx-auto rounded-3xl overflow-hidden shadow-2xl bg-white/50 dark:bg-slate-800/50 backdrop-blur-md border border-slate-200 dark:border-slate-700">
+                {/* Slide Track */}
+                <div
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${current * 100}%)` }}
+                >
                     {testimonials.map((testimonial, index) => (
-                        <div key={index} className="flex-shrink-0 w-full p-8 text-center">
-                            <p className="text-lg italic mb-6 text-slate-700 dark:text-slate-300 font-inter">"{testimonial.quote}"</p>
-                            <p className="font-semibold text-right text-slate-800 dark:text-slate-200 font-inter">- {testimonial.author}</p>
+                        <div
+                            key={index}
+                            className="flex-shrink-0 w-full p-8 text-center"
+                        >
+                            <p className="text-lg italic mb-6 text-slate-700 dark:text-slate-300 font-inter leading-relaxed">
+                                "{testimonial.quote}"
+                            </p>
+                            <p className="font-semibold text-right text-slate-800 dark:text-slate-200 font-inter">
+                                - {testimonial.author}
+                            </p>
                         </div>
                     ))}
                 </div>
-                <button onClick={prevSlide} className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors duration-200">
+
+                {/* Prev Button */}
+                <button
+                    onClick={prevSlide}
+                    className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 p-2 md:p-3 rounded-full bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200 shadow hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors duration-200"
+                >
                     <ChevronLeft />
                 </button>
-                <button onClick={nextSlide} className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 rounded-full bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors duration-200">
+
+                {/* Next Button */}
+                <button
+                    onClick={nextSlide}
+                    className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 p-2 md:p-3 rounded-full bg-white dark:bg-slate-700 text-slate-800 dark:text-slate-200 shadow hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors duration-200"
+                >
                     <ChevronRight />
                 </button>
             </div>
+
+
         </section>
     );
 });
@@ -603,13 +632,16 @@ const Footer: FC = React.memo(() => (
         <div className="container mx-auto">
             <p className="mb-4">{portfolioData.footer.copyright}</p>
             <div className="flex justify-center space-x-6">
-                <a href="#" className="hover:text-fuchsia-500 transition-colors duration-200">
+                <a href={portfolioData.footer.linkedin} className="hover:text-fuchsia-500 transition-colors duration-200">
                     <LinkedinIcon />
                 </a>
-                <a href="#" className="hover:text-fuchsia-500 transition-colors duration-200">
+                <a href={portfolioData.footer.github} className="hover:text-fuchsia-500 transition-colors duration-200">
                     <GithubIcon />
                 </a>
-                <a href="#" className="hover:text-fuchsia-500 transition-colors duration-200">
+                <a
+                    href={`mailto:${portfolioData.footer.email}`}
+                    className="hover:text-fuchsia-500 transition-colors duration-200"
+                >
                     <MailIcon />
                 </a>
             </div>
@@ -620,7 +652,6 @@ const Footer: FC = React.memo(() => (
 const App: FC = () => {
     const [theme, setTheme] = useState<string>(localStorage.getItem('theme') || 'dark');
     const [navbarBg, setNavbarBg] = useState<boolean>(false);
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
     const [showScrollTop, setShowScrollTop] = useState<boolean>(false);
 
@@ -656,11 +687,9 @@ const App: FC = () => {
 
     const handleProjectClick = (project: Project) => {
         setSelectedProject(project);
-        setIsModalOpen(true);
     };
 
     const handleCloseModal = () => {
-        setIsModalOpen(false);
         setSelectedProject(null);
     };
 
@@ -713,7 +742,7 @@ const App: FC = () => {
                 <hr className="my-10 border-slate-300 dark:border-slate-700" />
                 <SkillsSection skillsData={portfolioData.skills as SkillsData} />
                 <hr className="my-10 border-slate-300 dark:border-slate-700" />
-                <ProjectsSection projects={portfolioData.projects as Project[]} onProjectClick={handleProjectClick} />
+                <ProjectsSection projects={portfolioData.projects as Project[]}  onProjectClick={handleProjectClick} />
                 <hr className="my-10 border-slate-300 dark:border-slate-700" />
                 <ExperienceSection experiences={portfolioData.experience as Experience[]} />
                 <hr className="my-10 border-slate-300 dark:border-slate-700" />
